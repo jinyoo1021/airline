@@ -5,7 +5,6 @@ public class main {
 
         IdAndPasswards IdPass = new IdAndPasswards();
 
-
         LoginPage loginPage = new LoginPage(IdPass.getLoginInfo());
     }
 }

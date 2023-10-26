@@ -9,12 +9,19 @@ public class LoginPage implements ActionListener {
     JFrame frame = new JFrame();
     JButton loginButton = new JButton("Login");
     JButton resetButton = new JButton("Reset");
+
     JTextField userIDField = new JTextField();
     JPasswordField userPasswordField = new JPasswordField();
+
     JLabel userIDLable = new JLabel("userID:");
     JLabel userPasswordLable = new JLabel("Password:");
     JLabel messageLable = new JLabel();
+
     HashMap<String, String> loginInfo = new HashMap<String, String>();
+
+    JButton signupButton = new JButton("Sign Up");
+
+
     LoginPage(HashMap<String, String> loginInfoOriginal) {
         loginInfo = loginInfoOriginal;
 
@@ -35,6 +42,10 @@ public class LoginPage implements ActionListener {
         resetButton.setFocusable(false);
         resetButton.addActionListener(this);
 
+        signupButton.setBounds(125,230,100,25);
+        signupButton.setFocusable(false);
+        signupButton.addActionListener(this);
+
         frame.add(userIDLable);
         frame.add(userPasswordLable);
         frame.add(messageLable);
@@ -42,10 +53,13 @@ public class LoginPage implements ActionListener {
         frame.add(userPasswordField);
         frame.add(loginButton);
         frame.add(resetButton);
+        frame.add(signupButton);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(420,420);
         frame.setLayout(null);
         frame.setVisible(true);
+
+
     }
 
     @Override
@@ -78,6 +92,10 @@ public class LoginPage implements ActionListener {
                 messageLable.setForeground(Color.red);
                 messageLable.setText("Username not found");
             }
+        }
+
+        if(e.getSource() == signupButton) {
+            registrationForm signupForm = new registrationForm();
         }
     }
 }
