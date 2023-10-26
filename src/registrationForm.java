@@ -65,5 +65,11 @@ public class registrationForm implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        if(e.getSource() == signupResetButton) {
+            nameTextField.setText("");
+            passwordField.setText("");
+            confirmPasswordField.setText("");
+            emailField.setText("");
+        }
     }
 }
