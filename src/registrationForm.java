@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class registrationForm implements ActionListener {
     JFrame frame;
 
@@ -20,7 +21,10 @@ public class registrationForm implements ActionListener {
     JButton signupResetButton = new JButton("Reset");
 
     registrationForm() {
+
         openForm();
+        setLocationAndSize();
+        addComptoFream();
     }
 
     public void openForm() {
@@ -31,7 +35,9 @@ public class registrationForm implements ActionListener {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+    }
 
+    public void setLocationAndSize() {
         nameLabel.setBounds(50,100,75,25);
         passwordLabel.setBounds(50,150,75,25);
         confirmPasswordLabel.setBounds(50, 200, 120, 25);
@@ -50,6 +56,9 @@ public class registrationForm implements ActionListener {
         signupResetButton.setFocusable(false);
         signupResetButton.addActionListener(this);
 
+    }
+
+    public void addComptoFream() {
         frame.add(nameLabel);
         frame.add(passwordLabel);
         frame.add(confirmPasswordLabel);
@@ -60,6 +69,11 @@ public class registrationForm implements ActionListener {
         frame.add(emailField);
         frame.add(registerButton);
         frame.add(signupResetButton);
+    }
+
+    public void actionEvent() {
+        registerButton.addActionListener(this);
+        signupResetButton.addActionListener(this);
     }
 
     @Override
