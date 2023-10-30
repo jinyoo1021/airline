@@ -1,7 +1,11 @@
 import javax.swing.*;
+import javax.swing.text.DefaultEditorKit;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
+import java.sql.DriverManager;
+import java.util.Arrays;
 
 
 public class registrationForm implements ActionListener {
@@ -25,6 +29,7 @@ public class registrationForm implements ActionListener {
         openForm();
         setLocationAndSize();
         addComptoFream();
+        actionEvent();
     }
 
     public void openForm() {
@@ -84,6 +89,31 @@ public class registrationForm implements ActionListener {
             passwordField.setText("");
             confirmPasswordField.setText("");
             emailField.setText("");
+        }
+        
+        if(e.getSource() == registerButton) {
+
+            try {
+                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306","root","1234");
+                PreparedStatement Pstatement = connection.prepareStatement("insert into student values(?,?,?,?,?,?,?)");
+
+                Pstatement.setString(1,nameTextField.getText());
+                Pstatement.setString(2, Arrays.toString(passwordField.getPassword()));
+                Pstatement.setString(3, Arrays.toString(confirmPasswordField.getPassword()));
+                Pstatement.setString(4,emailField.getText());
+
+                //Checking for the Password match
+                if(Arrays.equals(passwordField.getPassword(), confirmPasswordField.getPassword())){
+                    Pstatement.executeUpdate();
+                    JOptionPane.showMessageDialog(null, "Data Registered Successfully");
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Password did not match");
+                }
+            }
+            catch (SQLException e1){
+                e1.printStackTrace();
+            }
         }
     }
 }
